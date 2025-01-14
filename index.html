@@ -1,20 +1,35 @@
-fetch('https://script.google.com/macros/s/AKfycbxLkJpc5jUwUY_55yMRIzuOZW1RcIZgGj6UDqgWypZpL2CPbyAX375mxc30qZpcNhFAVA/exec', {
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/json'
-  },
-  body: JSON.stringify({
-    employee: 'สมชาย',
-    storeName: 'ร้านขายดี',
-    // ...ฟิลด์อื่นๆ
-  })
-})
-.then(res => res.json())
-.then(data => {
-  if (data.status === 'ok') {
-    console.log("บันทึกสำเร็จ");
-  } else {
-    console.log("เกิดข้อผิดพลาด:", data.message);
-  }
-})
-.catch(err => console.error(err));
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>My Web</title>
+</head>
+<body>
+  <h1>Test Fetch to Apps Script</h1>
+  <button id="btnFetch">บันทึกข้อมูล</button>
+
+  <script>
+    document.getElementById('btnFetch').addEventListener('click', () => {
+      fetch('YOUR_APPS_SCRIPT_WEB_APP_URL', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          employee: 'สมชาย',
+          storeName: 'ร้านขายดี'
+        })
+      })
+      .then(res => res.json())
+      .then(data => {
+        if (data.status === 'ok') {
+          alert("บันทึกสำเร็จ!");
+        } else {
+          alert("เกิดข้อผิดพลาด: " + data.message);
+        }
+      })
+      .catch(err => console.error(err));
+    });
+  </script>
+</body>
+</html>
