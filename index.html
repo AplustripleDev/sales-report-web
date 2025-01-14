@@ -1,26 +1,42 @@
-<script>
-  console.log("เริ่ม fetch แล้ว...");
-  fetch("https://script.google.com/macros/s/AKfycbzR041_LMJ1sNsYgGStWBJXUFTGIRqtbXG-ke1Uh5Du6TnrMc3SwrPsvOSUUvovPVCSyg/exec", {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      employee: 'สมชาย',
-      storeName: 'ร้านขายดี'
-      // ...ฟิลด์อื่น...
-    })
-  })
-  .then(res => {
-    console.log("res status:", res.status);
-    return res.json();
-  })
-  .then(data => {
-    console.log("data:", data);
-    if (data.status === 'ok') {
-      console.log("บันทึกสำเร็จ!");
-    } else {
-      console.log("เกิดข้อผิดพลาด:", data.message);
-    }
-  })
-  .catch(err => console.error("error:", err));
-  alert("ลองเรียก fetch แล้ว!");
-</script>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Hello to Google Sheets</title>
+</head>
+<body>
+  <h1>บันทึกคำว่า "สวัสดี" ลง Google Sheets</h1>
+  <button id="btnSend">ส่งข้อมูล</button>
+
+  <script>
+    // URL Web App จากการ Deploy Apps Script (ลงท้ายด้วย /exec)
+    const APPS_SCRIPT_URL = "YOUR_WEB_APP_EXEC_URL";
+
+    document.getElementById('btnSend').addEventListener('click', () => {
+      // ข้อมูลที่จะส่ง
+      const payload = {
+        message: "สวัสดี"  // ตัวอย่าง ส่งข้อความ "สวัสดี"
+      };
+
+      // ใช้ fetch() เรียก Web App (doPost)
+      fetch(APPS_SCRIPT_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      })
+      .then(res => res.json())
+      .then(data => {
+        if (data.status === 'ok') {
+          alert("บันทึกสำเร็จ: " + data.message);
+        } else {
+          alert("บันทึกไม่สำเร็จ: " + data.message);
+        }
+      })
+      .catch(err => {
+        console.error(err);
+        alert("เกิดข้อผิดพลาด: " + err);
+      });
+    });
+  </script>
+</body>
+</html>
