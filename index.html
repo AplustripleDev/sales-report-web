@@ -1,36 +1,30 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <title>Test Console</title>
-</head>
-<body>
-  <h1>สวัสดี</h1>
-  
-  <script>
-    console.log("Test fetch เริ่มทำงานแล้ว...");
+<script>
+  console.log("=== เริ่มต้นเรียก fetch ===");
 
-    fetch('YOUR_APPS_SCRIPT_WEB_APP_URL', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        employee: 'สมชาย',
-        storeName: 'ร้านขายดี',
-        // ...ฟิลด์เพิ่มเติม
-      })
+  fetch('1zCi_jxehR9Upi2CXbIp65SK05vy_OhAGaqz3E7LxQkk', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      employee: 'สมชาย',
+      storeName: 'ร้านขายดี'
+      // ...ฟิลด์อื่น ๆ
     })
-    .then(res => {
-      console.log("Response Status:", res.status);
-      return res.json();
-    })
-    .then(data => {
-      if (data.status === 'ok') {
-        console.log("บันทึกสำเร็จ!");
-      } else {
-        console.log("เกิดข้อผิดพลาด:", data.message);
-      }
-    })
-    .catch(err => console.error("จับข้อผิดพลาด:", err));
-  </script>
-</body>
-</html>
+  })
+  .then(res => {
+    console.log("=== หลังเรียก fetch แล้ว ได้ res:", res);
+    return res.json();
+  })
+  .then(data => {
+    console.log("=== data จากเว็บแอป:", data);
+    if (data.status === 'ok') {
+      console.log("บันทึกสำเร็จ!");
+    } else {
+      console.log("เกิดข้อผิดพลาด:", data.message);
+    }
+  })
+  .catch(err => {
+    console.error("=== บางอย่างผิดพลาด ===", err);
+  });
+
+  console.log("=== สคริปต์ท้ายสุด ===");
+</script>
