@@ -5,8 +5,30 @@
   <title>Minimal Test</title>
 </head>
 <body>
+  <h1>Hello</h1>
   <h1>สวัสดี</h1>
+
+  <!-- Script ส่วน fetch + alert -->
   <script>
+    fetch('https://script.google.com/macros/s/AKfycbxBpxu8a4MgrSFle3jcAVIFY4yIMoX76YJEUKhF235E/dev', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        employee: 'สมชาย',
+        storeName: 'ร้านขายดี'
+        // ...ถ้ามีฟิลด์อื่นๆ ก็ใส่เพิ่มได้
+      })
+    })
+    .then(res => res.json())
+    .then(data => {
+      if (data.status === 'ok') {
+        console.log("บันทึกสำเร็จ!");
+      } else {
+        console.log("เกิดข้อผิดพลาด:", data.message);
+      }
+    })
+    .catch(err => console.error(err));
+
     alert("JavaScript ทำงานแล้ว!");
   </script>
 </body>
