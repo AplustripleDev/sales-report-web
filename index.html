@@ -1,27 +1,13 @@
+<!DOCTYPE html>
 <html>
 <head>
-  <title>My Page</title>
+  <meta charset="utf-8">
+  <title>Minimal Test</title>
 </head>
 <body>
-  <h1>Hello</h1>
-  <!-- ส่วนอื่น ๆ -->
-
-  <!-- ห่อโค้ด fetch ด้วย <script> -->
+  <h1>สวัสดี</h1>
   <script>
-    fetch('https://script.google.com/macros/s/AKfycbxBpxu8a4MgrSFle3jcAVIFY4yIMoX76YJEUKhF235E/dev', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ employee: 'สมชาย', storeName: 'ร้านขายดี' })
-    })
-    .then(res => res.json())
-    .then(data => {
-      if (data.status === 'ok') {
-        console.log("บันทึกสำเร็จ!");
-      } else {
-        console.log("เกิดข้อผิดพลาด:", data.message);
-      }
-    })
-    .catch(err => console.error(err));
+    alert("JavaScript ทำงานแล้ว!");
   </script>
 </body>
 </html>
