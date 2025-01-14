@@ -1,30 +1,26 @@
 <script>
-  console.log("=== เริ่มต้นเรียก fetch ===");
-
-  fetch('1zCi_jxehR9Upi2CXbIp65SK05vy_OhAGaqz3E7LxQkk', {
+  console.log("เริ่ม fetch แล้ว...");
+  fetch("https://script.google.com/macros/s/AKfycbxLkJpc5jUwUY_55yMRIzuOZW1RcIZgGj6UDqgWypZpL2CPbyAX375mxc30qZpcNhFAVA/exec", {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       employee: 'สมชาย',
       storeName: 'ร้านขายดี'
-      // ...ฟิลด์อื่น ๆ
+      // ...ฟิลด์อื่น...
     })
   })
   .then(res => {
-    console.log("=== หลังเรียก fetch แล้ว ได้ res:", res);
+    console.log("res status:", res.status);
     return res.json();
   })
   .then(data => {
-    console.log("=== data จากเว็บแอป:", data);
+    console.log("data:", data);
     if (data.status === 'ok') {
       console.log("บันทึกสำเร็จ!");
     } else {
       console.log("เกิดข้อผิดพลาด:", data.message);
     }
   })
-  .catch(err => {
-    console.error("=== บางอย่างผิดพลาด ===", err);
-  });
-
-  console.log("=== สคริปต์ท้ายสุด ===");
+  .catch(err => console.error("error:", err));
+  alert("ลองเรียก fetch แล้ว!");
 </script>
